@@ -1,0 +1,64 @@
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Header from '../../components/misc/Header';
+import { makeStyles } from "@material-ui/core/styles";
+import Footer from '../../components/misc/Footer'; 
+import Download from '../../components/downloadApp';
+import { useMediaQuery, useTheme } from '@material-ui/core';
+import RecentPosts from '../../components/recentsPosts';
+import Article from '../../components/article';
+
+
+const useStyles = makeStyles((theme) => ({
+    section: {
+        padding: theme.spacing(4),
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+
+}));
+
+
+export default function ArticleScreen() {
+    const classes = useStyles();
+    const theme = useTheme();
+    console.log(theme);
+    const isMatch = useMediaQuery(theme.breakpoints.down("md"));
+    console.log(isMatch);
+
+    return (
+        <>
+            <Header />
+
+            {isMatch ? (
+                <>
+                    <Article />
+                </>
+            ) : (
+                <>
+                    <Box className={classes.section}>
+                        <Box sx={{ flexGrow: 1 }}>
+                            <Grid container spacing={2}>
+
+                                <Grid item xs={8}>
+                                    <Article />
+                                </Grid>
+
+                                <Grid item xs={4} style={{ backgroundColor: '#F3F4F6', borderRadius: '8px' }}>
+                                    <RecentPosts />
+                                </Grid>
+
+                            </Grid>
+                        </Box>
+                    </Box>
+                </>
+            )}
+
+
+            <Download />
+            <Footer />
+        </>
+    );
+}

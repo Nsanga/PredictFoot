@@ -1,0 +1,66 @@
+.rootSection {
+    font-weight: 900;
+    font-size: 3rem;
+    color: #243E63
+}
+
+.textSection {
+    font-weight: 600;
+    font-size: 2rem;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 12px;
+    color: #2196f3;
+
+}
+
+.customBoxSection {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center
+}
+
+.paragrapheSection {
+    font-weight: 500;
+    font-size: 16px;
+    width: 50%;
+    color: #243E63;
+    line-height: 1.4;
+}
+
+.rootResponsiveSection {
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: #243E63
+}
+
+.textResponsiveSection {
+    font-weight: 600;
+    font-size: 1.3rem;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 12px;
+    color: #2196f3;
+    margin-bottom: 12px;
+
+}
+
+.customBoxResponsiveSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+
+}
+
+.paragrapheResponsiveSection {
+    font-weight: 500;
+    font-size: 16px;
+    color: #243E63;
+
+}

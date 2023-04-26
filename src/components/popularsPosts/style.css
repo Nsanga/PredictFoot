@@ -1,0 +1,12 @@
+.headerPopularPost {
+    font-weight: 900;
+    font-size: 2rem;
+    color: #243E63
+}
+
+.headerResponsivePopularPost {
+    font-weight: 700;
+    font-size: 2rem;
+    color: #243E63;
+    margin-top: 2rem
+}

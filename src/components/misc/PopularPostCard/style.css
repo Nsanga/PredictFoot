@@ -1,0 +1,56 @@
+.link {
+    color: #4299e1;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration:none;
+    cursor: pointer;
+}
+
+.link:hover {
+    text-decoration: none;
+    color: #243E63;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    position: relative;
+    margin-top: 1.5rem;
+    color: #243E63;
+}
+
+.title:hover {
+    cursor: pointer;
+    color: #4299e1;
+}
+
+.foot {
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #243E63
+}
+
+.footer {
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: flex-start;
+    color: #243E63
+}
+
+.post:hover {
+    cursor: pointer;
+}
+
+;
+
+.image {
+    width: 345px;
+    height: 280px;
+    border-radius: 8px;
+    object-fit: cover;
+}

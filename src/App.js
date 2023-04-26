@@ -1,6 +1,6 @@
-import Home from "./screens/home"
-import Blog from "./screens/blog"
-import Article from "./screens/article"
+import Home from "./pages/landingPage"
+import Blog from "./pages/blog"
+import Article from "./pages/article"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 

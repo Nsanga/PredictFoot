@@ -1,0 +1,56 @@
+.link {
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none
+}
+
+.customPost {
+    display: flex;
+    flex-direction: column;
+}
+
+.titrePost {
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    color: #243E63;
+}
+
+.titrePost:hover{
+    color: #4299e1;
+}
+
+.postRecent {
+    margin-top:1.5rem;
+}
+.postRecent:hover {
+    cursor: pointer;
+    background-color: #b6d4ed;
+    border-radius: 8px;
+}
+
+.linkResponsive {
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none
+}
+
+.titreResponsive {
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    position: relative;
+    color: #243E63;
+}
+
+.postRecentResponsive {
+    margin-top: 3rem;
+}
+
+.postRecentResponsive:hover {
+    cursor: pointer;
+    background-color: #4299e1;
+    border-radius: 8px;
+    margin-left: 0.1px
+}

@@ -1,0 +1,119 @@
+.head {
+    font-weight: 900;
+    margin-top: 1rem;
+}
+
+.customBox {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.customBox {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.name {
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #243E63;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+    color: #243E63;
+}
+
+.duration {
+    font-weight: 700;
+    font-size: 1rem;
+    color: gray;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.subscribe {
+    font-weight: inherit;
+    text-align: center;
+    color: white;
+}
+
+.rootResponsivePackage {
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: #243E63;
+    margin-top: 3rem;
+    margin-bottom: 12px;
+}
+
+.customBoxResponsivePackage {
+    align-items: center;
+    margin: 0rem 4rem 0rem 4rem;
+    padding-top: 30px;
+    background-color: transparent;
+}
+
+
+
+.cardResponsivePackage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 8px;
+    background-color: #e9ecee;
+    text-align: center;
+
+}
+
+.cardResponsivePackage:hover{
+    background-color: #dadde3;
+    transform: translateY(0.5rem);
+}
+
+.CardContentResponsivePackage {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.nameResponsivePackage {
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #243E63;
+}
+
+.priceResponsivePackage {
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+    color: #243E63;
+}
+
+.durationResponsivePackage {
+    font-weight: 700;
+    font-size: 1rem;
+    color: gray;
+    text-align: center;
+    margin-top: 1rem
+}
+
+.subscribeResponsivePackage {
+    font-weight: 700;
+    text-align: center;
+    text-transform: none;
+    margin-top: 5rem
+}

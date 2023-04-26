@@ -1,0 +1,51 @@
+.contentHeader {
+    margin-top: 7rem
+  }
+.titlesHeader {
+    font-size: 1.3rem;
+    color: #2196f3;
+    font-weight: 500;
+}
+
+.subtitlesHeader {
+    font-weight: 900;
+    font-size: 3.2rem;
+    display: flex;
+    margin-top: 12px;
+    color: #243E63;
+    line-height: 1.4;
+}
+
+.playStoresHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: none;
+    color:#fff;
+}
+
+.playStoresHeader span {
+    margin-left: 6px;
+}
+
+.appStoresHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: none;
+    color:#fff;
+}
+
+.appStoresHeader span {
+    margin-left: 6px;
+}
+
+/* .button:hover {
+    background-color: #0069d9;
+} */

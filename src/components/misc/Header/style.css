@@ -1,0 +1,31 @@
+.menu {
+    text-decoration: none;
+    font-size: 2rem;
+    margin: 1rem 0;
+    font-weight: 600;
+    color: #243E63;
+    letter-spacing: 0.025em;
+    transition: all 0.3s ease;
+    padding-bottom: 0.1rem;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+    border-bottom-color: transparent;
+  }
+  
+  .menu:hover {
+    border-bottom-color: #4299e1;
+    color: #4299e1;
+  }
+  
+  @media (min-width: 1280px) {
+    .menu {
+      font-size: 1rem;
+      margin: 0 1.5rem 0 0;
+      font-weight: bold;
+    }
+  }
+  
+  .logo {
+    flex-grow: 1;
+  }
+  
