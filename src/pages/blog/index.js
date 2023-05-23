@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React from 'react';
+import { fetchExampleRequest } from '../../redux/example/actions';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Header from '../../components/misc/Header';
-import { Stack } from '@mui/material';
+import { Button, Stack } from '@mui/material';
 import BlogBox from '../../components/misc/BlogBox';
 import Footer from '../../components/misc/Footer';
 import AllArticle from '../../components/allArticles';
@@ -10,12 +11,25 @@ import PopularPost from '../../components/popularsPosts';
 import RecentPosts from '../../components/recentsPosts';
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import './style.css';
+import { connect, useDispatch } from "react-redux";
 
-export default function BasicGrid() {
+
+const Blog = (
+    {
+        message,
+        loading
+    }
+) => {
     const theme = useTheme();
     console.log(theme);
     const isMatch = useMediaQuery(theme.breakpoints.down("md"));
     console.log(isMatch);
+
+    const dispatch = useDispatch();
+
+    const handleButtonClick = () => {
+        dispatch(fetchExampleRequest());
+    };
 
 
     return (
@@ -50,6 +64,12 @@ export default function BasicGrid() {
                             description="Restez au courant des dernières nouvelles, des mises à jour et des potins de l'écosystème PredictFoot à travers nos articles et newsletters."
                         />
                     </Stack>
+
+                    <Box>
+                        <Button onClick={handleButtonClick}>Fetch Data</Button>
+                        {loading ? <p>Loading...</p> : message && <p>{message}</p>}
+                    </Box>
+
                     <Box className="sectionBlog">
                         <Box sx={{ flexGrow: 1 }}>
                             <Grid container spacing={2}>
@@ -71,3 +91,10 @@ export default function BasicGrid() {
         </div>
     );
 }
+
+const mapStateToProps = ({ ExampleReducer }) => ({
+    message: ExampleReducer.message,
+    loading: ExampleReducer.loading
+  });
+  
+  export default connect(mapStateToProps)(Blog);

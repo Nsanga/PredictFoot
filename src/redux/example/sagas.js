@@ -1,30 +1,29 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {put, takeLatest} from 'redux-saga/effects';
-import {getUserProfile as getUserProfileService} from '../../services/user';
+import { put, takeLatest } from 'redux-saga/effects';
 import * as types from './types';
-
-const USER_PATH = '/user';
+import {
+  fetchExampleSuccess,
+  fetchExampleFailure
+} from './actions';
 
 /**
  * @description Retrieve user information
  * @param {user token}
  * @returns transactions, user informations, balance
  */
-function* getUserProfile({payload}) {
+function* fetchExampleData(action) {
   console.log('done');
-  const path = `${USER_PATH}/profile`;
   try {
-    const data = yield getUserProfileService(path, payload);
+    const data = yield fetchExampleSuccess(action);
     if (data.status === false) {
       console.log('response: ', data);
       return;
     }
-    yield put({type: types.GET_USER_PROFILE_SUCCESS, payload: data.response});
+    yield put(fetchExampleSuccess('Data received successfully'));
   } catch (error) {
-    console.error('Some Error: ', error);
+    yield put(fetchExampleFailure(error.message));
   }
 }
 
-export default function* UserSaga() {
-  yield takeLatest(types.GET_USER_PROFILE_REQUEST, getUserProfile);
+export default function* ExampleSaga() {
+  yield takeLatest(types.GET_EXAMPLE_REQUEST, fetchExampleData);
 }

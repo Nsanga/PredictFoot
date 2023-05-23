@@ -1,36 +1,33 @@
+
 import * as types from './types';
 
 const INITIAL_STATE = {
-  userInfo: null,
   message: null,
   loading: false,
-  transactions: null,
-  balance: null,
 };
 
-function UserReducer(state = INITIAL_STATE, action) {
+function ExampleReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case types.GET_USER_PROFILE_REQUEST:
+    case types.GET_EXAMPLE_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case types.GET_USER_PROFILE_FAILED:
+    case types.GET_EXAMPLE_FAILED:
       return {
         ...state,
         loading: false,
       };
-    case types.GET_USER_PROFILE_SUCCESS:
+    case types.GET_EXAMPLE_SUCCESS:
       const result = action.payload;
       return {
         ...state,
         loading: false,
-        userInfo: {...result.user, balance: result.balance},
-        transactions: result.transactions,
+        message: result
       };
     default:
       return state;
   }
 }
 
-export default UserReducer;
+export default ExampleReducer;
