@@ -1,35 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box } from '@material-ui/core';
-import Slider from 'react-slick'; 
+import Slider from 'react-slick';
 import { Stack } from '@mui/material';
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import { Slide } from '../misc/Slide';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import './style.css'
+import { connect, useDispatch } from "react-redux";
+import { fetchHomeRequest } from '../../redux/home/actions';
+import load from '../../assets/loading.gif';
 
-const testimonials = [
+const Service = (
   {
-    numero: "01",
-    titre: "Ameliorez vos pronostics",
-    description: "Devenez un expert en pronostics en quelques étapes simples",
-  },
-  {
-    numero: "02",
-    titre: "Adam Cuppy",
-    description: "Founder, EventsNYC"
-  },
-  {
-    numero: "03",
-    titre: "Steven Marcetti",
-    description: "Event Manager, Brite"
+    homes,
+    loading
   }
-];
-
-const Service = () => {
+) => {
   const theme = useTheme();
   console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   console.log(isMatch);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchHomeRequest());
+  }, [dispatch]);
 
   const settings = {
     dots: false,
@@ -40,36 +35,50 @@ const Service = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: 0,
-     
+
   };
 
   return (
     <>
       {isMatch ? (
         <div className="serviceContainerResponsive">
-          <Slider {...settings}>
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="servicetestimonialCardResponsive">
-                <Stack className="serviceavatarResponsive">
-                  {testimonial.numero}
-                </Stack>
-                <Box>
-                  <Box className="servicetitleResponsive">
-                    {testimonial.titre}
-                  </Box>
-                  <Box className="servicedescriptionResponsive">
-                    {testimonial.description}
-                  </Box>
-                  <button className="actionService">Demarrer</button>
-                </Box>
-              </div>
-            ))}
-          </Slider>
+          {loading ? (
+            <Stack direction="row" justifyContent='center' marginBottom='1rem'>
+              <img src={load} alt="load animation" className="load-animation" />
+            </Stack>
+          ) : (
+            <Slider {...settings}>
+
+              {homes?.service?.map((item, index) => {
+
+                return (
+                  <div key={index} className="servicetestimonialCardResponsive">
+                    <Stack className="serviceavatarResponsive">
+                      {item.number}
+                    </Stack>
+                    <Box>
+                      <Box className="servicetitleResponsive">{item.title}</Box>
+                      <Box className="servicedescriptionResponsive">{item.description}</Box>
+                      <button className="actionService">Demarrer</button>
+                    </Box>
+                  </div>
+                );
+
+              })}
+
+            </Slider>
+          )}
+
         </div>
       ) : (
         <div className="serviceContainer">
-          <Slide 
-              testimonials={testimonials}
+          {loading ? (
+            <Stack direction="row" justifyContent='center' marginBottom='1rem'>
+              <img src={load} alt="load animation" className="load-animation" />
+            </Stack>
+          ) : (
+            <Slide
+              testimonials={homes?.service}
               autoPlay={true}
               stopAutoPlayOnHover={true}
               animation="slide"
@@ -87,11 +96,17 @@ const Service = () => {
               PrevIcon={<MdKeyboardArrowLeft />}
               NextIcon={<MdKeyboardArrowRight />}
             />
+          )}
+
         </div>
       )}
     </>
 
   );
 };
+const mapStateToProps = ({ HomeReducer }) => ({
+  homes: HomeReducer.homes,
+  loading: HomeReducer.loading
+});
 
-export default Service;
+export default connect(mapStateToProps)(Service);

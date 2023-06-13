@@ -1,40 +1,29 @@
 import { Box, Stack, Avatar } from '@mui/material';
-import { makeStyles } from '@material-ui/core/styles';
 import './style.css';
 import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles({
-image: {
-    width: "345px",
-    height: '280px',
-    borderRadius: '8px',
-    objectFit: "cover"
-},
-});
-
 export default function PopularCard({ post }) {
-  const classes = useStyles();
 
   return (
-    <Stack sx={{ maxWidth: 345 }} href={post.url} marginRight={4}>
+    <Stack sx={{ maxWidth: 345 }} href={post.url} className='popular-posts'>
       <Stack marginTop='2.5rem' className="post">
-        <img src={post.postImageSrc} alt="article" className={classes.image}/>
+        <img src={post.postImageSrc} alt="article" className='image-populars-posts'/>
 
-        <Box variant="h5" className="title">
+        <Box className="title-populars-posts">
           {post.title}
         </Box>
       </Stack>
       <Box>
-        <Stack direction="row" spacing={2} marginTop='1rem'>
+        <Stack direction="row" spacing={2} marginTop='1rem' alignItems="center" className="stack-populars-posts">
           <Avatar alt={post.authorName} src={post.authorImageSrc} />
           <Box>
-            <Box className="foot">{post.authorName}</Box>
-            <Box className="footer">{post.authorProfile}</Box>
+            <Box className="foot-populars-posts">{post.authorName}</Box>
+            <Box className="footer-populars-posts">{post.authorProfile}</Box>
           </Box>
         </Stack>
       </Box>
       <Box marginTop='1rem' >
-        <Link to="/article" className="link">Lire l'article</Link>
+        <Link to="/article" className="link-popular-post">Lire l'article</Link>
       </Box>
     </Stack>
   );

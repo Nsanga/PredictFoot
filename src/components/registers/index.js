@@ -1,42 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Carousel from 'react-material-ui-carousel'
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
-import register from '../../assets/register.png'
-import login from '../../assets/login.png'
-import home from '../../assets/home.png'
 import { Container, Stack, Box } from '@mui/material';
 import { MdOutlineSpeed, MdSecurity } from 'react-icons/md';
 import { GoSmiley } from 'react-icons/go';
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import { Slide } from '../misc/Slide';
 import './style.css'
+import { connect, useDispatch } from "react-redux";
+import { fetchHomeRequest } from '../../redux/home/actions';
+import load from '../../assets/loading.gif';
 
-const testimonials = [
+const Register = (
   {
-    image: register,
-    numero: "01",
-    titre: "Inscrivez-vous",
-    description: "Téléchargez l'application mobile PREDICTFOOT et créez votre compte."
-  },
-  {
-    image: login,
-    numero: "02",
-    titre: "Connectez-vous",
-    description: "Connectez-vous pour accéder à toutes nos fonctionnalités exclusives et ne rien manquer de nos pronostics."
-  },
-  {
-    image: home,
-    numero: "03",
-    titre: "Prenez part à nos pronostics",
-    description: "Boostez votre expérience de pari en ligne en participant à nos pronostics et en bénéficiant de conseils et analyses de qualité supérieure"
+    homes,
+    loading
   }
-];
-
-const Register = () => {
+) => {
   const theme = useTheme();
   console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   console.log(isMatch);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchHomeRequest());
+    console.log('Dispatched fetchHeadbandRequest');
+  }, [dispatch]);
 
   return (
     <>
@@ -71,25 +61,34 @@ const Register = () => {
                 PrevIcon={<MdKeyboardArrowLeft />}
                 NextIcon={<MdKeyboardArrowRight />}
               >
-                {testimonials.map((testimonial, index) => (
-                  <div key={index} className="testimonialCardRegisterResponsive">
-                    <Box className="contentRegisterResponsive">
-                      <img src={testimonial.image} alt={testimonial.titre} style={{ maxWidth: "200px" }} />
-                    </Box>
-                    <Box style={{ width: '100%' }}>
-                      <Box className="avatarRegisterResponsive">
-                        {testimonial.numero}
+                {loading ? (
+                  <Stack direction="row" justifyContent='center' marginBottom='1rem'>
+                    <img src={load} alt="load animation" className="load-animation" />
+                  </Stack>
+                ) : (
+
+                  homes?.grip?.map((item, index) => (
+                    <div key={index} className="testimonialCardRegisterResponsive">
+                      <Box className="contentRegisterResponsive">
+                        <img src={item.image} alt={item.title} style={{ maxWidth: "200px" }} />
                       </Box>
-                      <Box className="titleRegisterResponsive">
-                        {testimonial.titre}
+                      <Box style={{ width: '100%' }}>
+                        <Box className="avatarRegisterResponsive">
+                          {item.number}
+                        </Box>
+                        <Box className="titleRegisterResponsive">
+                          {item.title}
+                        </Box>
+                        <Box className="descriptionRegisterResponsive">
+                          {item.description}
+                        </Box>
+                        <button className="actionRegisterResponsive" >Demarrer</button>
                       </Box>
-                      <Box className="descriptionRegisterResponsive">
-                        {testimonial.description}
-                      </Box>
-                      <button className="actionRegisterResponsive" >Demarrer</button>
-                    </Box>
-                  </div>
-                ))}
+                    </div>
+                  ))
+
+                )}
+
               </Carousel>
             </Box>
           </Container>
@@ -120,25 +119,33 @@ const Register = () => {
 
               </Stack>
             </Stack>
-            <Slide
-              testimonials={testimonials}
-              autoPlay={true}
-              stopAutoPlayOnHover={true}
-              animation="slide"
-              indicators={false}
-              navButtonsAlwaysVisible={true}
-              navButtonsWrapperProps={{
-                style: {
-                  position: 'absolute',
-                  transform: 'translateY(-50%)',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }
-              }}
-              PrevIcon={<MdKeyboardArrowLeft />}
-              NextIcon={<MdKeyboardArrowRight />}
-            />
+            {loading ? (
+              <Stack direction="row" justifyContent='center' marginBottom='1rem'>
+                <img src={load} alt="load animation" className="load-animation" />
+              </Stack>
+            ) : (
+
+              <Slide
+                testimonials={homes?.grip}
+                autoPlay={true}
+                stopAutoPlayOnHover={true}
+                animation="slide"
+                indicators={false}
+                navButtonsAlwaysVisible={true}
+                navButtonsWrapperProps={{
+                  style: {
+                    position: 'absolute',
+                    transform: 'translateY(-50%)',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }
+                }}
+                PrevIcon={<MdKeyboardArrowLeft />}
+                NextIcon={<MdKeyboardArrowRight />}
+              />
+
+            )}
 
           </div>
         </>
@@ -147,5 +154,9 @@ const Register = () => {
 
   );
 };
+const mapStateToProps = ({ HomeReducer }) => ({
+  homes: HomeReducer.homes,
+  loading: HomeReducer.loading
+});
 
-export default Register;
+export default connect(mapStateToProps)(Register);

@@ -1,33 +1,33 @@
-
 import * as types from './types';
 
 const INITIAL_STATE = {
-  message: null,
+  homes: [],
   loading: false,
+  error: null
 };
 
-function ExampleReducer(state = INITIAL_STATE, action) {
+function HomeReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case types.GET_EXAMPLE_REQUEST:
+    case types.GET_HOME_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case types.GET_EXAMPLE_FAILED:
+    case types.GET_HOME_FAILED:
       return {
         ...state,
+        error: action.payload,
         loading: false,
       };
-    case types.GET_EXAMPLE_SUCCESS:
-      const result = action.payload;
+    case types.GET_HOME_SUCCESS:
       return {
         ...state,
         loading: false,
-        message: result
+        homes: action.payload
       };
     default:
       return state;
   }
 }
 
-export default ExampleReducer;
+export default HomeReducer;

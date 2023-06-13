@@ -16,6 +16,12 @@
     justify-content: center;
     color: #243E63;
 }
+@media screen and (max-width: 767px) {
+    .titrePost {
+        display: flex;
+        justify-content: flex-start;
+    }
+  }
 
 .titrePost:hover{
     color: #4299e1;
@@ -24,6 +30,13 @@
 .postRecent {
     margin-top:1.5rem;
 }
+@media screen and (max-width: 767px) {
+    .postRecent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+  }
 .postRecent:hover {
     cursor: pointer;
     background-color: #b6d4ed;

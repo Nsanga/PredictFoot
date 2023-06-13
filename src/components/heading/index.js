@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import Box from '@mui/material/Box';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@mui/material/Button';
 import { FaApple, FaGooglePlay } from 'react-icons/fa';
 import Stack from '@mui/material/Stack';
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import './style.css';
+import { connect, useDispatch } from "react-redux";
+import { fetchHomeRequest } from '../../redux/home/actions';
+import load from '../../assets/loading.gif'
 
-import phone from '../../assets/phone.png';
 import { View } from "../misc/View";
 
 const useStyles = makeStyles((theme) => ({
@@ -40,27 +41,27 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function LandingPage() {
+const Headband = (
+    {
+        homes,
+        loading
+    }
+) => {
     const classes = useStyles();
     const theme = useTheme();
     console.log(theme);
     const isMatch = useMediaQuery(theme.breakpoints.down("md"));
-    console.log(isMatch);
+    console.log(homes, 'gggg');
 
-    const [isLoading, setIsLoading] = useState(true);
-
+    const dispatch = useDispatch();
     useEffect(() => {
-        const timeout = setTimeout(() => {
-            setIsLoading(false);
-        }, 1000);
+        dispatch(fetchHomeRequest());
+    }, [dispatch]);
 
-        return () => clearTimeout(timeout);
-    }, []);
-
-    const slideIn = useSpring({
-        transform: isLoading ? "translateY(100%)" : "translateY(0)",
-        delay: 1000,
-    });
+    // const slideIn = useSpring({
+    //     transform: isLoading ? "translateY(100%)" : "translateY(0)",
+    //     delay: 1000,
+    // });
 
     return (
         <>
@@ -70,19 +71,29 @@ export default function LandingPage() {
                         <Box>
 
                             <Stack direction="column" spacing={32} className={classes.root}>
+                                {loading ? (
+                                    <Stack direction="row" justifyContent='center' marginBottom='1rem'>
+                                        <img src={load} alt="load animation" className="load-animation" />
+                                    </Stack>
+                                ) : (
+                                    homes?.headband?.map((item, index) => (
+                                        <View
+                                            key={index}
+                                            image={item?.image}
+                                            title={item?.title}
+                                            subtitle={item?.description}
+                                            buttonIcon="apple"
+                                            buttonAppStore="App Store"
+                                            buttonStyle={{ background: "#1677d8", color: "#ffffff" }}
+                                            button2Icon="google"
+                                            buttonPlayStore="Play Store"
+                                            button2Style={{ background: "#243E63", color: "#ffffff" }}
+                                            direction="column"
+                                            width='50%'
+                                        />
+                                    ))
 
-                                <View 
-                                image={phone}
-                                title= "Pronostics pour tous..."
-                                subtitle= "Des pronostics gagnants en toute sécurité avec notre plateforme de pronostics !"
-                                buttonIcon="apple"
-                                buttonAppStore="App Store"
-                                buttonStyle={{ background: "#1677d8", color: "#ffffff" }}
-                                button2Icon="google"
-                                buttonPlayStore="Play Store"
-                                button2Style={{ background: "#243E63", color: "#ffffff" }}
-                                direction="row"
-                                />
+                                )}
 
                             </Stack>
                         </Box>
@@ -91,20 +102,36 @@ export default function LandingPage() {
             ) : (
                 <>
                     <Box className="contentHeader">
-                        <View
-                            image={phone}
-                            maxWidth="300px"
-                            title={<div className="titlesHeader">Pronostics pour tous...</div>}
-                            subtitle={<div className="subtitlesHeader">Des pronostics gagnants en toute sécurité avec notre plateforme de pronostics !</div>}
-                            buttonAppStore={<div className="appStoresHeader">{<FaApple size="2rem" />}<span>App Store</span></div>}
-                            backgroundApp="#1677d8"
-                            buttonPlayStore={<div className="playStoresHeader">{<FaGooglePlay size="1.5rem" />}<span>Play Store</span></div>}
-                            backgroundPlay="#243E63"
+                        {loading ? (
+                            <Stack direction="row" justifyContent='center' marginBottom='1rem'>
+                                <img src={load} alt="load animation" className="load-animation" />
+                            </Stack>
+                        ) : (
+                            homes?.headband?.map((item, index) => (
+                                <View
+                                    key={index}
+                                    image={item?.image}
+                                    maxWidth="300px"
+                                    title={<div className="titlesHeader">{item?.title}</div>}
+                                    subtitle={<div className="subtitlesHeader">{item?.description}</div>}
+                                    buttonAppStore={<div className="appStoresHeader">{<FaApple size="2rem" />}<span>App Store</span></div>}
+                                    backgroundApp="#1677d8"
+                                    buttonPlayStore={<div className="playStoresHeader">{<FaGooglePlay size="1.5rem" />}<span>Play Store</span></div>}
+                                    backgroundPlay="#243E63"
+                                />
+                            ))
 
-                        />
+                        )}
                     </Box>
                 </>
             )}
         </>
     );
 }
+
+const mapStateToProps = ({ HomeReducer }) => ({
+    homes: HomeReducer.homes,
+    loading: HomeReducer.loading
+});
+
+export default connect(mapStateToProps)(Headband);

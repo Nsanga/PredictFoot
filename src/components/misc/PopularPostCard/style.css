@@ -1,18 +1,24 @@
-.link {
+.popular-posts {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 64px;
+}
+
+.link-popular-post {
     color: #4299e1;
     font-size: 1rem;
     font-weight: 600;
-    text-decoration:none;
+    text-decoration: none;
     cursor: pointer;
 }
 
-.link:hover {
+.link-popular-post:hover {
     text-decoration: none;
     color: #243E63;
 }
 
-.title {
-    font-size: 1.5rem;
+.title-populars-posts {
+    font-size: 20px;
     font-weight: bold;
     display: flex;
     position: relative;
@@ -20,12 +26,12 @@
     color: #243E63;
 }
 
-.title:hover {
+.title-populars-posts:hover {
     cursor: pointer;
     color: #4299e1;
 }
 
-.foot {
+.foot-populars-posts {
     font-size: 1rem;
     font-weight: 700;
     display: flex;
@@ -34,7 +40,7 @@
     color: #243E63
 }
 
-.footer {
+.footer-populars-posts {
     font-size: 0.8rem;
     font-weight: 500;
     display: flex;
@@ -46,11 +52,47 @@
     cursor: pointer;
 }
 
-;
-
-.image {
-    width: 345px;
+.image-populars-posts {
+    width: 385px;
     height: 280px;
     border-radius: 8px;
     object-fit: cover;
+    margin: 1rem 0rem 0rem 0rem;
+    transition: transform 0.3s ease;
+}
+
+.image-populars-posts:hover {
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 767px) {
+
+    .title-populars-posts {
+        margin-top: 1rem;
+        font-size: 1rem;
+        margin-left: 2rem;
+    }
+
+    .image-populars-posts {
+        width: 300px;
+        height: 180px;
+        border-radius: 8px;
+        margin-left: 2rem;
+        object-fit: cover
+    }
+
+    .popular-posts {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-left: -1rem;
+    }
+
+    .link-popular-post {
+        margin-left: 2rem;
+    }
+
+    .stack-populars-posts{
+        margin-left: 2rem;
+    }
 }

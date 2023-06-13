@@ -7,15 +7,15 @@ export default function ClientCard({ description, imageSrc, customerName, backgr
     return (
         <>
 
-            <Card sx={{ minWidth: 200 }} style={{ background: background }} className='cardBorder'>
-                <CardContent>
-                    <Box textAlign='center' lineHeight={1.6}>
-                        {description && <Box>{description}</Box>}
+            <Card sx={{ minWidth: 200 }} style={{ background: background }} >
+                <CardContent className='cardBorder'>
+                    <Box textAlign='center' lineHeight={1.6} >
+                        {description && <Box className="description">{description}</Box>}
                     </Box>
-                    <Stack direction="row" spacing={2} marginTop={6} justifyContent={justifyContent}>
+                    <Box className="footerClient">
                         {imageSrc && <Avatar alt="Remy Sharp" src={imageSrc} />}
-                        {customerName && <Box >{customerName}</Box>}
-                    </Stack>
+                        {customerName && <Box className="footerName">{customerName}</Box>}
+                    </Box>
                 </CardContent>
             </Card>
         </>
