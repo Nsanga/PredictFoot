@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import { Container } from '@material-ui/core';
 import { useMediaQuery, useTheme } from '@material-ui/core';
@@ -11,32 +11,40 @@ import Client from '../../components/clients';
 import Download from '../../components/downloadApp';
 import About from '../../components/aboutUs';
 import Register from '../../components/registers';
-import Footer from "../../components/misc/Footer"; 
+import Footer from "../../components/misc/Footer";
+import { connect, useDispatch } from "react-redux";
+import { fetchHomeRequest } from '../../redux/home/actions';
+import load from '../../assets/loading.gif'
+import { Stack } from "@mui/material";
+import './style.css'
 
-export default function LandingPage() {
+const LandingPage = (
+  {
+    loading
+  }
+) => {
   const theme = useTheme();
   console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   console.log(isMatch);
 
-  const [isLoading, setIsLoading] = useState(true);
-
+  const dispatch = useDispatch();
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+    dispatch(fetchHomeRequest());
+  }, [dispatch]);
 
-    return () => clearTimeout(timeout);
-  }, []);
 
-  const fade = useSpring({
-    opacity: isLoading ? 0 : 1,
-    delay: 1000,
-  });
+  if (loading) {
+    return (
+      <Stack direction="row" justifyContent='center' alignItems='center' height='100vh'>
+        <img src={load} alt="load animation" className="load-animation" />
+      </Stack>
+    )
+  }
 
   return (
-    <animated.div style={fade}>
-      
+    <animated.div>
+
       <Header />
       {isMatch ? (
         <>
@@ -71,3 +79,9 @@ export default function LandingPage() {
     </animated.div>
   );
 }
+const mapStateToProps = ({ HomeReducer }) => ({
+  homes: HomeReducer.homes,
+  loading: HomeReducer.loading
+});
+
+export default connect(mapStateToProps)(LandingPage);

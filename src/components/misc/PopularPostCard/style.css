@@ -36,7 +36,7 @@
     font-weight: 700;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     color: #243E63
 }
 
@@ -85,7 +85,7 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        margin-left: -1rem;
+        margin: 0rem 1rem 0rem 1rem;
     }
 
     .link-popular-post {
@@ -94,5 +94,9 @@
 
     .stack-populars-posts{
         margin-left: 2rem;
+    }
+
+    .post-popular-body{
+        margin-left: -2rem;
     }
 }

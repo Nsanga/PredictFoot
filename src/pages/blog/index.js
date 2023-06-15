@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Header from '../../components/misc/Header';
@@ -10,13 +10,35 @@ import PopularPost from '../../components/popularsPosts';
 import RecentPosts from '../../components/recentsPosts';
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import './style.css';
+import { connect, useDispatch } from "react-redux";
+import { fetchBlogRequest } from '../../redux/blog/actions';
+import load from '../../assets/loading.gif'
+import DownloadApp from '../../components/downloadApp';
 
-const Blog = () => {
+const Blog = (
+    {
+        blogs,
+        loading
+    }
+) => {
     const theme = useTheme();
     console.log(theme);
     const isMatch = useMediaQuery(theme.breakpoints.down("md"));
     console.log(isMatch);
 
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchBlogRequest());
+        console.log('Dispatched fetchBlogRequest');
+    }, [dispatch]);
+
+    if (loading) {
+        return (
+            <Stack direction="row" justifyContent='center' alignItems='center' height='100vh'>
+                <img src={load} alt="load animation" className="load-animation" />
+            </Stack>
+        )
+    }
 
     return (
         <div>
@@ -34,8 +56,8 @@ const Blog = () => {
                         <Box>
                             <Stack container spacing={2}>
 
-                                <PopularPost />
-                                <RecentPosts />
+                                <PopularPost blogs={blogs} />
+                                <RecentPosts blogs={blogs} />
 
                             </Stack>
                         </Box>
@@ -56,10 +78,10 @@ const Blog = () => {
                             <Grid container spacing={2}>
 
                                 <Grid item xs={8}>
-                                    <PopularPost />
+                                    <PopularPost blogs={blogs} />
                                 </Grid>
                                 <Grid item xs={4}>
-                                    <RecentPosts />
+                                    <RecentPosts blogs={blogs} />
                                 </Grid>
 
                             </Grid>
@@ -68,9 +90,15 @@ const Blog = () => {
                     <AllArticle />
                 </>
             )}
+            <DownloadApp />
             <Footer />
         </div>
     );
 }
-  
-  export default Blog;
+
+const mapStateToProps = ({ BlogReducer }) => ({
+    blogs: BlogReducer.blogs,
+    loading: BlogReducer.loading
+});
+
+export default connect(mapStateToProps)(Blog);

@@ -1,10 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import { Section } from '../misc/Section';
-import { connect, useDispatch } from "react-redux";
-import { fetchHomeRequest } from '../../redux/home/actions';
-import load from '../../assets/loading.gif'
-import { Stack } from '@mui/material';
+import { connect } from "react-redux";
 
 const AboutUs = (
   {
@@ -17,20 +14,12 @@ const AboutUs = (
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   console.log(isMatch);
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchHomeRequest());
-  }, [dispatch]);
-
   return (
     <>
       {isMatch ? (
         <>
-          {loading ? (
-            <Stack direction="row" justifyContent='center' marginBottom='1rem'>
-              <img src={load} alt="load animation" className="load-animation" />
-            </Stack>
-          ) : (
+
+          {
             homes?.about?.map((item, index) => (
               <Section
                 key={index}
@@ -39,17 +28,13 @@ const AboutUs = (
                 image={item.image}
                 maxWidth="350px"
               />
-            ))
-          )}
+            ))}
+
         </>
 
       ) : (
         <>
-          {loading ? (
-            <Stack direction="row" justifyContent='center' marginBottom='1rem'>
-              <img src={load} alt="load animation" className="load-animation" />
-            </Stack>
-          ) : (
+          {
             homes?.about?.map((item, index) => (
               <Section
                 key={index}
@@ -59,7 +44,7 @@ const AboutUs = (
                 maxWidth="500px"
               />
             ))
-          )}
+          }
         </>
       )}
 

@@ -14,7 +14,6 @@
     font-size: 20px;
     font-weight: bold;
     display: flex;
-    position: relative;
     margin-top: 1.5rem;
     color: #243E63;
 }
@@ -38,6 +37,7 @@
 .footer-all-articles {
     font-size: 0.8rem;
     font-weight: 500;
+    font-style: italic;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -46,16 +46,19 @@
 }
 
 .link-all-articles {
+    text-decoration: none;
+    color: #4299e1;
+}
+
+.box-link{
     font-size: 1rem;
     font-weight: 700;
     text-decoration: none;
     color: #4299e1;
 }
 
-.link-all-articles:hover{
-    cursor: pointer;
+.box-link:hover{
     color: #243E63;
-
 }
 
 .header-all-articles {
@@ -85,7 +88,7 @@
     .header {
         display: flex;
         justify-content: flex-start;
-        margin-left: -1rem;
+        margin-left: 2px;
         font-weight: 900;
         font-size: 2rem;
         color: #243E63;
@@ -101,4 +104,9 @@
     .title-all-articles {
         font-size: 1rem;
     }
+
+    .box-link{
+        font-size: 12px;
+    }
+
 }

@@ -7,6 +7,7 @@ import { Button } from "@material-ui/core";
 import logo from '../../assets/PredictFoot_logo.png';
 import CloseIcon from '@mui/icons-material/Close';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import './style.css';
 import {
     Drawer,
     IconButton,
@@ -64,7 +65,7 @@ const DrawerComp = () => {
             >
                 <DrawerHeader>
                     <Link variant="h6" className={classes.title}>
-                        <img src={logo} alt="logo" style={{ maxWidth: "250px" }} />
+                        <img src={logo} alt="logo" style={{ maxWidth: "150px" }} />
                     </Link>
                     <Stack marginLeft="3rem">
                     <IconButton onClick={handleDrawerClose}>
@@ -96,7 +97,9 @@ const DrawerComp = () => {
                             </ListItemText>
                         </ListItemIcon>
                     </ListItemButton>
-                    <Button variant="contained" style={{ fontWeight: 500, background: "#4299e1", color: "#f7fafc", textTransform: "none", margin: "16px 2rem 4px 8px" }}>Télécharger l'application</Button>
+                    <Button variant="contained" style={{ fontWeight: 500, background: "#4299e1", color: "#f7fafc", textTransform: "none", margin: "16px 2rem 4px 8px" }}>
+                        Télécharger l'application
+                    </Button>
                 </List>
 
             </Drawer>

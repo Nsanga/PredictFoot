@@ -24,13 +24,13 @@ function* fetchArticleRequest(action) {
   try {
     console.log('id::', action.payload)
     const id = action.payload
-    const link = `${url}/api/v1/landing-page/blog/getOne?id=${id}`;
+    const link = `${url}/api/v1/landing-page/blog/getOne?Id=${id}`;
     
     const data = yield getUnauthRequest(link);
     console.log('article', data)
 
     if (data.success) {
-      yield put({type: types.GET_ARTICLE_REQUEST, payload: data.data});
+      yield put({type: types.GET_ARTICLE_SUCCESS, payload: data.data});
     } else {
       yield put({ type: types.GET_ARTICLE_FAILED, payload: "Échec de la récupération des données de l'article" });
     }

@@ -2,11 +2,14 @@
     font-weight: 900;
     font-size: 2rem;
     color: #243E63;
+    margin-bottom: 2.5rem;
 }
 
-.headerResponsiveRecentPost {
-    font-weight: 700;
-    font-size: 2rem;
-    color: #243E63;
-    margin-top: 3rem;
+@media (max-width: 960px) {
+    .headerRecentPost {
+        font-weight: 700;
+        font-size: 2rem;
+        color: #243E63;
+        margin: 1rem;
+    }
 }

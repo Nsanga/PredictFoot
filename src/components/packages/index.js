@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import { Container } from '@material-ui/core';
 import Button from '@mui/material/Button';
@@ -9,9 +9,7 @@ import Carousel from 'react-material-ui-carousel';
 import Pricing from '../misc/PricingCard/index.js';
 import './style.css';
 import Titre from '../misc/Titre/index.js';
-import { connect, useDispatch } from "react-redux";
-import { fetchHomeRequest } from '../../redux/home/actions.js';
-import load from '../../assets/loading.gif';
+import { connect } from "react-redux";
 
 const Packages = (
   {
@@ -23,12 +21,6 @@ const Packages = (
   console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   console.log(isMatch);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchHomeRequest());
-  }, [dispatch]);
-
 
   return (
     <>
@@ -42,11 +34,7 @@ const Packages = (
                     Nos forfaits
                   </Stack>
                 </Box>
-                {loading ? (
-                  <Stack direction="row" justifyContent='center' marginBottom='1rem'>
-                    <img src={load} alt="load animation" className="load-animation" />
-                  </Stack>
-                ) : (
+                {
                   <Box className="customBoxResponsivePackage">
                     <Carousel
                       autoPlay={true}
@@ -80,7 +68,7 @@ const Packages = (
                     </Carousel>
                   </Box>
 
-                )}
+                }
               </Box>
             </Box>
           </Container>
@@ -92,11 +80,7 @@ const Packages = (
             size="3rem"
           />
 
-          {loading ? (
-            <Stack direction="row" justifyContent='center' marginBottom='1rem'>
-              <img src={load} alt="load animation" className="load-animation" />
-            </Stack>
-          ) : (
+          {
             <Container>
               <Box className='customBox'>
                 {homes?.plan?.map((item, index) => (
@@ -111,7 +95,7 @@ const Packages = (
                 ))}
               </Box>
             </Container>
-          )}
+          }
 
         </>
       )}

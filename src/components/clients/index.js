@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import { Container } from '@material-ui/core';
 import Avatar from '@mui/material/Avatar';
@@ -8,9 +8,7 @@ import Carousel from 'react-material-ui-carousel';
 import ClientCard from '../misc/ClientCard';
 import './style.css';
 import Titre from '../misc/Titre/index';
-import { connect, useDispatch } from "react-redux";
-import { fetchHomeRequest } from '../../redux/home/actions';
-import load from '../../assets/loading.gif'
+import { connect } from "react-redux";
 
 const Clients = (
   {
@@ -22,12 +20,6 @@ const Clients = (
   console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   console.log(isMatch);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchHomeRequest());
-    console.log('Dispatched fetchHeadbandRequest');
-  }, [dispatch]);
 
   return (
     <>
@@ -54,11 +46,7 @@ const Clients = (
                 animation="slide"
                 navButtonsAlwaysVisible={false}
               >
-                {loading ? (
-                  <Stack direction="row" justifyContent='center' marginBottom='1rem'>
-                    <img src={load} alt="load animation" className="load-animation" />
-                  </Stack>
-                ) : (
+                {
                   homes?.customer?.map((item, index) => (
                     <div key={index} className="carouselItem">
                       <Box
@@ -75,7 +63,7 @@ const Clients = (
                       </Box>
                     </div>
                   ))
-                )}
+                }
               </Carousel>
 
             </Box>
@@ -96,11 +84,7 @@ const Clients = (
           <Container>
 
             <Box>
-              {loading ? (
-                <Stack direction="row" justifyContent='center' marginBottom='1rem'>
-                  <img src={load} alt="load animation" className="load-animation" />
-                </Stack>
-              ) : (
+              {
                 <Stack direction="row" spacing={2} marginTop={6} >
                   {homes?.customer?.map((item, index) => (
                     <ClientCard key={index}
@@ -110,7 +94,7 @@ const Clients = (
                     />
                   ))}
                 </Stack>
-              )}
+              }
 
             </Box>
           </Container>

@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import { Stack } from '@mui/material';
 import { FaApple, FaGooglePlay } from 'react-icons/fa';
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import { View } from '../misc/View';
 import './style.css'
-import { connect, useDispatch } from "react-redux";
-import { fetchHomeRequest } from '../../redux/home/actions';
-import load from '../../assets/loading.gif'
+import { connect } from "react-redux";
 
 const Download = (
   {
@@ -19,11 +17,6 @@ const Download = (
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   console.log(isMatch);
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchHomeRequest());
-  }, [dispatch]);
-
   return (
     <>
       {isMatch ? (
@@ -33,11 +26,7 @@ const Download = (
               <Box>
 
                 <Stack direction="column" spacing={4} className="containerResponsive">
-                  {loading ? (
-                    <Stack direction="row" justifyContent='center' marginBottom='1rem'>
-                      <img src={load} alt="load animation" className="load-animation" />
-                    </Stack>
-                  ) : (
+                  {
                     homes?.advertisement?.map((item, index) => (
                       <View
                         key={index}
@@ -55,7 +44,7 @@ const Download = (
                       />
                     ))
 
-                  )}
+                  }
                 </Stack>
               </Box>
             </Box>
@@ -66,11 +55,7 @@ const Download = (
           <div className="rootDownload">
             <Box className="contentDownload">
               <Box>
-                {loading ? (
-                  <Stack direction="row" justifyContent='center' marginBottom='1rem'>
-                    <img src={load} alt="load animation" className="load-animation" />
-                  </Stack>
-                ) : (
+                {
                   homes?.advertisement?.map((item, index) => (
                     <View
                       key={index}
@@ -85,7 +70,7 @@ const Download = (
                     />
                   ))
 
-                )}
+                }
 
               </Box>
             </Box>

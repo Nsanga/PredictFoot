@@ -1,4 +1,4 @@
-import { Card, CardContent, Avatar, Box, Stack } from '@mui/material';
+import { Card, CardContent, Avatar, Box } from '@mui/material';
 import './style.css';
 
 export default function ClientCard({ description, imageSrc, customerName, background, justifyContent }) {

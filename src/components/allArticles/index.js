@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Stack } from "@mui/material";
 import { Avatar, Box } from "@material-ui/core";
 import { Link } from 'react-router-dom';
@@ -7,24 +7,17 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import './style.css';
-import { connect, useDispatch } from "react-redux";
-import { fetchBlogRequest } from '../../redux/blog/actions';
+import { connect } from "react-redux";
 
 const AllArticle = (
     {
-        blogs,
-        loading
-      }
+        blogs
+    }
 ) => {
     const theme = useTheme();
     console.log(theme);
     const isMatch = useMediaQuery(theme.breakpoints.down("md"));
     console.log(isMatch);
-    const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchBlogRequest());
-    console.log('Dispatched fetchBlogRequest');
-  }, [dispatch]);
 
     const settings = {
         dots: true,
@@ -60,44 +53,46 @@ const AllArticle = (
                     slidesToScroll: 1
                 }
             },
-            
+
         ],
     };
 
-    
+
     return (
         <>
             {isMatch ? (
                 <>
                     <Box className='section'>
-                    <Box  className='header'>Tous les articles</Box>
+                        <Box className='header'>Tous les articles</Box>
                         <Slider {...settings}>
 
                             {blogs?.map((item, index) => (
-                                <Stack key={index}>
-                                    <Stack marginTop='2.5rem' className='post'>
-                                        <img src={item.imageArticle}
-                                            alt="article"
-                                            className='image-articles' />
+                                <Link to={`/article/${item._id}`} className='link-all-articles'>
+                                    <Stack key={index}>
+                                        <Stack marginTop='2.5rem' className='post'>
+                                            <img src={item.imageArticle}
+                                                alt="article"
+                                                className='image-articles' />
 
-                                        <Box gutterBottom variant="h5" className='title-all-articles'>
-                                            {item.title}
-                                        </Box>
-                                    </Stack>
-                                    <Box>
-
-                                        <Stack direction="row" spacing={2} marginTop='1rem' alignItems="center">
-                                            <Avatar alt="Remy Sharp" src={item.profile} />
-                                            <Box>
-                                                <Box className='foot-articles'>{item.author}</Box>
-                                                <Box className='footer'>{item.profession}</Box>
+                                            <Box gutterBottom variant="h5" className='title-all-articles'>
+                                                {item.title}
                                             </Box>
                                         </Stack>
-                                    </Box>
-                                    <Stack direction="row" spacing={2} marginTop='1rem'>
-                                        <Link to={`/article/${item._id}`} className='link'>Lire l'article</Link>
+                                        <Box>
+
+                                            <Stack direction="row" spacing={2} marginTop='1rem' alignItems="center">
+                                                <Avatar alt="Remy Sharp" src={item.profile} />
+                                                <Box>
+                                                    <Box className='author-name'>{item.author}</Box>
+                                                    <Box className='author-profession'>{item.profession}</Box>
+                                                </Box>
+                                            </Stack>
+                                        </Box>
+                                        <Stack direction="row" spacing={2} marginTop='1rem'>
+                                            <Box className='box-link'>Lire l'article</Box>
+                                        </Stack>
                                     </Stack>
-                                </Stack>
+                                </Link>
                             ))}
                         </Slider>
 
@@ -112,30 +107,32 @@ const AllArticle = (
                             <Slider {...settings}>
 
                                 {blogs?.map((item, index) => (
-                                    <Stack sx={{ maxWidth: 345 }} key={index}>
-                                        <Stack marginTop='2.5rem' className='post-all-articles'>
-                                            <img src={item.imageArticle}
-                                                alt="article"
-                                                className='image-articles' />
+                                    <Link to={`/article/${item._id}`} className='link-all-articles'>
+                                        <Stack sx={{ maxWidth: 345 }} key={index}>
+                                            <Stack marginTop='2.5rem' className='post-all-articles'>
+                                                <img src={item.imageArticle}
+                                                    alt="article"
+                                                    className='image-articles' />
 
-                                            <Box gutterBottom variant="h5" className='title-all-articles'>
-                                                {item.title}
-                                            </Box>
-                                        </Stack>
-                                        <Box>
-
-                                            <Stack direction="row" spacing={2} marginTop='1rem' alignItems="center">
-                                                <Avatar alt="Remy Sharp" src={item.profile} />
-                                                <Box>
-                                                    <Box className='foot-articles'>{item.author}</Box>
-                                                    <Box className='footer-all-articles'>{item.profession}</Box>
+                                                <Box gutterBottom variant="h5" className='title-all-articles'>
+                                                    {item.title}
                                                 </Box>
                                             </Stack>
-                                        </Box>
-                                        <Stack direction="row" spacing={2} marginTop='1rem'>
-                                            <Link className='link-all-articles'>Lire l'article</Link>
+                                            <Box>
+
+                                                <Stack direction="row" spacing={2} marginTop='1rem' alignItems="center">
+                                                    <Avatar alt="Remy Sharp" src={item.profile} />
+                                                    <Box>
+                                                        <Box className='foot-articles'>{item.author}</Box>
+                                                        <Box className='footer-all-articles'>{item.profession}</Box>
+                                                    </Box>
+                                                </Stack>
+                                            </Box>
+                                            <Stack direction="row" spacing={2} marginTop='1rem'>
+                                                <Box className='box-link'>Lire l'article</Box>
+                                            </Stack>
                                         </Stack>
-                                    </Stack>
+                                    </Link>
                                 ))}
                             </Slider>
 
@@ -151,6 +148,6 @@ const AllArticle = (
 const mapStateToProps = ({ BlogReducer }) => ({
     blogs: BlogReducer.blogs,
     loading: BlogReducer.loading
-  });
-  
-  export default connect(mapStateToProps)(AllArticle);
+});
+
+export default connect(mapStateToProps)(AllArticle);

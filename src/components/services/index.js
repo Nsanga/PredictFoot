@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Box } from '@material-ui/core';
 import Slider from 'react-slick';
 import { Stack } from '@mui/material';
@@ -6,9 +6,7 @@ import { useMediaQuery, useTheme } from '@material-ui/core';
 import { Slide } from '../misc/Slide';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import './style.css'
-import { connect, useDispatch } from "react-redux";
-import { fetchHomeRequest } from '../../redux/home/actions';
-import load from '../../assets/loading.gif';
+import { connect } from "react-redux";
 
 const Service = (
   {
@@ -20,11 +18,6 @@ const Service = (
   console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   console.log(isMatch);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchHomeRequest());
-  }, [dispatch]);
 
   const settings = {
     dots: false,
@@ -42,11 +35,7 @@ const Service = (
     <>
       {isMatch ? (
         <div className="serviceContainerResponsive">
-          {loading ? (
-            <Stack direction="row" justifyContent='center' marginBottom='1rem'>
-              <img src={load} alt="load animation" className="load-animation" />
-            </Stack>
-          ) : (
+          {
             <Slider {...settings}>
 
               {homes?.service?.map((item, index) => {
@@ -67,16 +56,12 @@ const Service = (
               })}
 
             </Slider>
-          )}
+          }
 
         </div>
       ) : (
         <div className="serviceContainer">
-          {loading ? (
-            <Stack direction="row" justifyContent='center' marginBottom='1rem'>
-              <img src={load} alt="load animation" className="load-animation" />
-            </Stack>
-          ) : (
+          {
             <Slide
               testimonials={homes?.service}
               autoPlay={true}
@@ -96,7 +81,7 @@ const Service = (
               PrevIcon={<MdKeyboardArrowLeft />}
               NextIcon={<MdKeyboardArrowRight />}
             />
-          )}
+          }
 
         </div>
       )}

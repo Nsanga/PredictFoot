@@ -16,7 +16,7 @@ export function Slide({ testimonials, autoPlay, stopAutoPlayOnHover, animation, 
         PrevIcon={PrevIcon}
         NextIcon={NextIcon}
       >
-        {testimonials ? (
+        {
           testimonials?.map((testimonial, index) => (
             <TestimonialCard
               key={index}
@@ -26,9 +26,7 @@ export function Slide({ testimonials, autoPlay, stopAutoPlayOnHover, animation, 
               description={testimonial.description}
             />
           ))
-        ) : (
-          <div>No testimonials available</div>
-        )}
+        }
       </Carousel>
     </Box>
   );

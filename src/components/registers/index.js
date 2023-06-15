@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Carousel from 'react-material-ui-carousel'
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { Container, Stack, Box } from '@mui/material';
@@ -7,9 +7,7 @@ import { GoSmiley } from 'react-icons/go';
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import { Slide } from '../misc/Slide';
 import './style.css'
-import { connect, useDispatch } from "react-redux";
-import { fetchHomeRequest } from '../../redux/home/actions';
-import load from '../../assets/loading.gif';
+import { connect } from "react-redux";
 
 const Register = (
   {
@@ -21,12 +19,6 @@ const Register = (
   console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   console.log(isMatch);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchHomeRequest());
-    console.log('Dispatched fetchHeadbandRequest');
-  }, [dispatch]);
 
   return (
     <>
@@ -61,11 +53,7 @@ const Register = (
                 PrevIcon={<MdKeyboardArrowLeft />}
                 NextIcon={<MdKeyboardArrowRight />}
               >
-                {loading ? (
-                  <Stack direction="row" justifyContent='center' marginBottom='1rem'>
-                    <img src={load} alt="load animation" className="load-animation" />
-                  </Stack>
-                ) : (
+                {
 
                   homes?.grip?.map((item, index) => (
                     <div key={index} className="testimonialCardRegisterResponsive">
@@ -86,8 +74,7 @@ const Register = (
                       </Box>
                     </div>
                   ))
-
-                )}
+                }
 
               </Carousel>
             </Box>
@@ -119,12 +106,7 @@ const Register = (
 
               </Stack>
             </Stack>
-            {loading ? (
-              <Stack direction="row" justifyContent='center' marginBottom='1rem'>
-                <img src={load} alt="load animation" className="load-animation" />
-              </Stack>
-            ) : (
-
+            {
               <Slide
                 testimonials={homes?.grip}
                 autoPlay={true}
@@ -145,7 +127,7 @@ const Register = (
                 NextIcon={<MdKeyboardArrowRight />}
               />
 
-            )}
+            }
 
           </div>
         </>

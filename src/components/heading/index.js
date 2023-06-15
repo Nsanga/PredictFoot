@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useSpring, animated } from "react-spring";
+import React from "react";
 import Box from '@mui/material/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { FaApple, FaGooglePlay } from 'react-icons/fa';
 import Stack from '@mui/material/Stack';
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import './style.css';
-import { connect, useDispatch } from "react-redux";
-import { fetchHomeRequest } from '../../redux/home/actions';
-import load from '../../assets/loading.gif'
+import { connect } from "react-redux";
 
 import { View } from "../misc/View";
 
@@ -53,16 +50,6 @@ const Headband = (
     const isMatch = useMediaQuery(theme.breakpoints.down("md"));
     console.log(homes, 'gggg');
 
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(fetchHomeRequest());
-    }, [dispatch]);
-
-    // const slideIn = useSpring({
-    //     transform: isLoading ? "translateY(100%)" : "translateY(0)",
-    //     delay: 1000,
-    // });
-
     return (
         <>
             {isMatch ? (
@@ -71,11 +58,7 @@ const Headband = (
                         <Box>
 
                             <Stack direction="column" spacing={32} className={classes.root}>
-                                {loading ? (
-                                    <Stack direction="row" justifyContent='center' marginBottom='1rem'>
-                                        <img src={load} alt="load animation" className="load-animation" />
-                                    </Stack>
-                                ) : (
+                                {
                                     homes?.headband?.map((item, index) => (
                                         <View
                                             key={index}
@@ -93,7 +76,7 @@ const Headband = (
                                         />
                                     ))
 
-                                )}
+                                }
 
                             </Stack>
                         </Box>
@@ -102,11 +85,7 @@ const Headband = (
             ) : (
                 <>
                     <Box className="contentHeader">
-                        {loading ? (
-                            <Stack direction="row" justifyContent='center' marginBottom='1rem'>
-                                <img src={load} alt="load animation" className="load-animation" />
-                            </Stack>
-                        ) : (
+                        {
                             homes?.headband?.map((item, index) => (
                                 <View
                                     key={index}
@@ -121,7 +100,7 @@ const Headband = (
                                 />
                             ))
 
-                        )}
+                        }
                     </Box>
                 </>
             )}

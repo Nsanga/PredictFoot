@@ -8,6 +8,7 @@ import Download from '../../components/downloadApp';
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import RecentPosts from '../../components/recentsPosts';
 import Article from '../../components/article';
+import { connect, useDispatch } from "react-redux";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,7 +22,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function ArticleScreen() {
+const ArticleScreen = (
+    {
+        blogs
+    }
+) => {
     const classes = useStyles();
     const theme = useTheme();
     console.log(theme);
@@ -47,7 +52,7 @@ export default function ArticleScreen() {
                                 </Grid>
 
                                 <Grid item xs={4} style={{ backgroundColor: '#F3F4F6', borderRadius: '8px' }}>
-                                    <RecentPosts />
+                                    <RecentPosts blogs={blogs} />
                                 </Grid>
 
                             </Grid>
@@ -62,3 +67,9 @@ export default function ArticleScreen() {
         </>
     );
 }
+const mapStateToProps = ({ BlogReducer }) => ({
+    blogs: BlogReducer.blogs,
+    loading: BlogReducer.loading
+});
+
+export default connect(mapStateToProps)(ArticleScreen);

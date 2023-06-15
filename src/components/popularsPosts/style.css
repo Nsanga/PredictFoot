@@ -4,9 +4,11 @@
     color: #243E63
 }
 
-.headerResponsivePopularPost {
-    font-weight: 700;
-    font-size: 2rem;
-    color: #243E63;
-    margin-top: 2rem
+@media (max-width: 960px) {
+    .headerPopularPost {
+        font-weight: 700;
+        font-size: 2rem;
+        color: #243E63;
+        margin: 1rem 1rem 0rem 1rem;
+    }
 }

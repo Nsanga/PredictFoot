@@ -1,0 +1,139 @@
+.title {
+    width: 97%;
+    font-weight: 900;
+    font-size: 2rem;
+    color: #243E63;
+}
+
+.subtitle {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #243E63;
+    letter-spacing: 0
+}
+
+.author-box{
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: flex-start
+}
+
+.author-name {
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    color: #243E63
+}
+
+.author-profession{
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-style: italic;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    color: #243E63
+}
+
+.date-article{
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    color: #243E63;
+    margin-top: 10px;
+}
+
+.header {
+    font-weight: 900;
+    font-size: 2rem;
+    color: #243E63;
+    letter-spacing: 0
+}
+
+.resume {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #243E63;
+    text-align: justify
+}
+
+.image {
+    width: 95%;
+    height: 450px;
+    border-radius: 8px;
+    object-fit: cover
+}
+
+.postRecent:hover {
+    cursor: pointer;
+    background-color: #4299e1;
+    border-radius: 8px
+}
+
+.description-article {
+    margin-top:2rem;
+    text-align:justify
+}
+
+@media screen and (max-width: 767px) {
+    .section-Article {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }      
+    
+    .title {
+        width: 100%;
+        font-weight: 900;
+        font-size: 18px;;
+        color: #243E63;
+        letter-spacing: 0;
+    }
+    
+    .image {
+        width: 100%;
+        height: 200px;
+        border-radius: 8px;
+        object-fit: cover
+    }
+    
+    .resume {
+        font-weight: 600;
+        font-size: 14px;
+        color: #243E63;
+    }
+    
+    .subtitle {
+        font-weight: 700;
+        font-size: 14px;;
+        color: #243E63;
+        text-align: justify;
+    }
+
+    .description-article { 
+        font-size: 14px;
+    }
+
+    .author-profession{
+        font-size: 10px;
+    }
+
+    .date-article{
+        font-size: 10px;
+    }
+
+    .author-name{
+        font-size: 14px;
+    }
+}
+

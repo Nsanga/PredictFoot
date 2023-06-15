@@ -19,28 +19,25 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function RecentPost({ posts }) {
-    const classes = useStyles();
+export default function RecentPost({ post }) {
 
     return (
-        <Box >
-            {posts.map((post, index) => (
-                <Grid container spacing={2} key={index} marginTop='1.5rem' className="postRecent">
-                    <Grid item xs={8} >
-                        <Box className="titrePost">{post.title}</Box>
-                        <Box marginTop='1rem'>
-                            <Link to='/article' className="link">Lire l'article</Link>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <img
-                            src={post.postImageSrc}
-                            alt='post'
-                            className={classes.imageRecente}
-                        />
-                    </Grid>
+        <Box style={{ marginTop: '1rem' }} className="post-recent">
+            <Grid container spacing={2} className="post-recent-head">
+                <Grid item xs={7} >
+                    <Box className="titrePost">{post.title}</Box>
                 </Grid>
-            ))}
+                <Grid item xs={5}>
+                    <img
+                        src={post.imageArticle}
+                        alt='post'
+                        className='imageRecente'
+                    />
+                </Grid>
+            </Grid>
+            <Box marginTop='1rem'>
+            <Box className='box-link'>Lire l'article</Box>
+            </Box>
         </Box>
     );
 }
