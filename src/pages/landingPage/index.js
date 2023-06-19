@@ -33,48 +33,48 @@ const LandingPage = (
     dispatch(fetchHomeRequest());
   }, [dispatch]);
 
-
-  if (loading) {
-    return (
-      <Stack direction="row" justifyContent='center' alignItems='center' height='100vh'>
-        <img src={load} alt="load animation" className="load-animation" />
-      </Stack>
-    )
-  }
-
   return (
     <animated.div>
 
       <Header />
-      {isMatch ? (
-        <>
-          <Container>
-            <Heading />
-            <Service />
-          </Container>
-          <Statistique />
-          <Forfait />
-          <Client />
-          <Download />
-          <About />
-          <Register />
-          <Footer />
-        </>
+      {loading ? (
+        <Stack direction="row" justifyContent='center' alignItems='center' height='100vh'>
+          <img src={load} alt="load animation" className="load-animation" />
+        </Stack>
       ) : (
         <>
-          <Container>
-            <Heading />
-            <Service />
-            <Statistique />
-            <Forfait />
-            <Client />
-          </Container>
-          <Download />
-          <About />
-          <Register />
-          <Footer />
+          {isMatch ? (
+            <>
+              <Container>
+                <Heading />
+                <Service />
+              </Container>
+              <Statistique />
+              <Forfait />
+              <Client />
+              <Download />
+              <About />
+              <Register />
+              <Footer />
+            </>
+          ) : (
+            <>
+              <Container>
+                <Heading />
+                <Service />
+                <Statistique />
+                <Forfait />
+                <Client />
+              </Container>
+              <Download />
+              <About />
+              <Register />
+              <Footer />
+            </>
+          )}
         </>
       )}
+
 
     </animated.div>
   );

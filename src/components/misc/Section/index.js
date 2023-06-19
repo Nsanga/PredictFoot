@@ -3,7 +3,8 @@ import React from "react";
 import './style.css'
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import { Stack } from "@mui/material";
-
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export function Section({ title, subtitle, description, image, maxWidth }) {
 
@@ -28,7 +29,11 @@ export function Section({ title, subtitle, description, image, maxWidth }) {
                             {description}
                         </div>
                         <Box className="customBoxResponsiveSection">
-                            <img src={image} alt="logo" style={{ maxWidth: maxWidth }} />
+                            <LazyLoadImage
+                                alt={title}
+                                effect="blur"
+                                src={image}
+                                width={maxWidth} />
                         </Box>
                     </Container>
                 </>
@@ -43,7 +48,11 @@ export function Section({ title, subtitle, description, image, maxWidth }) {
                             <Box className='paragrapheSection' >
                                 {description}
                             </Box>
-                            <img src={image} alt={title} style={{ maxWidth: maxWidth }} />
+                            <LazyLoadImage
+                                alt={title}
+                                effect="blur"
+                                src={image}
+                                width={maxWidth} />
                         </Box>
                     </Container>
                 </>

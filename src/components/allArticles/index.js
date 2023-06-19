@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Stack } from "@mui/material";
+import { Icon, Stack } from "@mui/material";
 import { Avatar, Box } from "@material-ui/core";
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import './style.css';
 import { connect } from "react-redux";
+import { IoChevronForwardCircleOutline } from 'react-icons/io5'
 
 const AllArticle = (
     {
@@ -18,6 +19,17 @@ const AllArticle = (
     console.log(theme);
     const isMatch = useMediaQuery(theme.breakpoints.down("md"));
     console.log(isMatch);
+
+    const maxTitleWords = 10;
+    const maxProfessionWords = 5;
+    const truncateText = (text, maxWords) => {
+        const words = text.split(" ");
+        if (words.length > maxWords) {
+            return words.slice(0, maxWords).join(" ") + "...";
+        } else {
+            return text;
+        }
+    };
 
     const settings = {
         dots: true,
@@ -63,7 +75,15 @@ const AllArticle = (
             {isMatch ? (
                 <>
                     <Box className='section'>
-                        <Box className='header'>Tous les articles</Box>
+                        <Box className='header-all-articles'>
+                            <Box>Tous les articles</Box>
+                            <Link to="/articles" style={{ textDecoration: 'none' }}>
+                                <Icon style={{ padding: '8px', color: '#243E63' }}>
+                                    <IoChevronForwardCircleOutline size={32} />
+                                </Icon>
+                            </Link>
+
+                        </Box>
                         <Slider {...settings}>
 
                             {blogs?.map((item, index) => (
@@ -75,7 +95,7 @@ const AllArticle = (
                                                 className='image-articles' />
 
                                             <Box gutterBottom variant="h5" className='title-all-articles'>
-                                                {item.title}
+                                                {truncateText(item.title, maxTitleWords)}
                                             </Box>
                                         </Stack>
                                         <Box>
@@ -84,7 +104,9 @@ const AllArticle = (
                                                 <Avatar alt="Remy Sharp" src={item.profile} />
                                                 <Box>
                                                     <Box className='author-name'>{item.author}</Box>
-                                                    <Box className='author-profession'>{item.profession}</Box>
+                                                    <Box className='author-profession'>
+                                                        {truncateText(item.profession, maxProfessionWords)}
+                                                    </Box>
                                                 </Box>
                                             </Stack>
                                         </Box>
@@ -103,7 +125,15 @@ const AllArticle = (
                     <Box className='section'>
                         <Box sx={{ flexGrow: 1 }}>
 
-                            <Box className='header-all-articles'>Tous les articles</Box>
+                            <Box className='header-all-articles'>
+                                <Box>Tous les articles</Box>
+                                <Link to="/blog/articles" style={{ textDecoration: 'none' }}>
+                                    <Icon style={{ padding: '8px', color: '#243E63' }}>
+                                        <IoChevronForwardCircleOutline size={32} />
+                                    </Icon>
+                                </Link>
+
+                            </Box>
                             <Slider {...settings}>
 
                                 {blogs?.map((item, index) => (
@@ -115,7 +145,7 @@ const AllArticle = (
                                                     className='image-articles' />
 
                                                 <Box gutterBottom variant="h5" className='title-all-articles'>
-                                                    {item.title}
+                                                    {truncateText(item.title, maxTitleWords)}
                                                 </Box>
                                             </Stack>
                                             <Box>
@@ -124,7 +154,9 @@ const AllArticle = (
                                                     <Avatar alt="Remy Sharp" src={item.profile} />
                                                     <Box>
                                                         <Box className='foot-articles'>{item.author}</Box>
-                                                        <Box className='footer-all-articles'>{item.profession}</Box>
+                                                        <Box className='footer-all-articles'>
+                                                            {truncateText(item.profession, maxProfessionWords)}
+                                                        </Box>
                                                     </Box>
                                                 </Stack>
                                             </Box>

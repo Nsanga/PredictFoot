@@ -73,7 +73,7 @@ const DrawerComp = () => {
                     </IconButton></Stack>
                 </DrawerHeader>
 
-                <List>
+                <List className="list" style={{ margin:'8px', padding:'12px' }}>
                     <ListItemButton onClick={() => setOpenDrawer(false)}>
                         <ListItemIcon>
                             <ListItemText>
@@ -97,14 +97,14 @@ const DrawerComp = () => {
                             </ListItemText>
                         </ListItemIcon>
                     </ListItemButton>
-                    <Button variant="contained" style={{ fontWeight: 500, background: "#4299e1", color: "#f7fafc", textTransform: "none", margin: "16px 2rem 4px 8px" }}>
+                    <Button variant="contained" style={{ fontWeight: 500, background: "#4299e1", color: "#f7fafc", textTransform: "none", marginTop:'2rem' }}>
                         Télécharger l'application
                     </Button>
                 </List>
 
             </Drawer>
             <IconButton
-                sx={{ color: "#243E63", marginLeft: "auto" }}
+                style={{ color: "#243E63", marginLeft: "auto" }}
                 onClick={() => setOpenDrawer(!openDrawer)}
             >
                 <MenuIcon color="white" />

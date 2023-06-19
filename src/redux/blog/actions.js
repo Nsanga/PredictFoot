@@ -1,8 +1,8 @@
 import * as types from './types';
 
-export const fetchBlogRequest = payload => ({
+export const fetchBlogRequest = (page, limit) => ({
   type: types.GET_BLOG_REQUEST,
-  payload,
+  payload: {page, limit},
 });
 
 export const fetchBlogSuccess = () => ({

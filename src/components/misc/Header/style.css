@@ -12,7 +12,8 @@
     border-bottom-color: transparent;
   }
   
-  .menu:hover {
+  .menu:hover,
+  .menu.active {
     border-bottom-color: #4299e1;
     color: #4299e1;
   }

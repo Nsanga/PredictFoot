@@ -5,6 +5,8 @@ import { useMediaQuery, useTheme } from '@material-ui/core';
 import { useSpring, animated } from "react-spring";
 import { FaApple, FaGooglePlay } from 'react-icons/fa';
 import { makeStyles } from '@material-ui/core/styles';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const useStyles = makeStyles((theme) => ({
     contentResponsive: {
@@ -49,7 +51,7 @@ export function View(
         button2Icon,
         buttonStyle,
         button2Style,
-        direction, 
+        direction,
         width
     }) {
 
@@ -93,7 +95,11 @@ export function View(
                         </Stack>
                         <Box style={{ display: "flex", justifyContent: "center" }}>
                             <animated.h1 style={slideIn}>
-                                <img src={image} alt="logo" style={{ maxWidth: "250px" }} />
+                                <LazyLoadImage
+                                    alt={title}
+                                    effect="blur"
+                                    src={image}
+                                    width="250px" />
                             </animated.h1>
                         </Box>
                     </Box>
@@ -101,7 +107,11 @@ export function View(
             ) : (
                 <>
                     <Stack direction="row" spacing={32} >
-                        <img src={image} alt={title} style={{ maxWidth: maxWidth }} />
+                        <LazyLoadImage
+                            alt={title}
+                            effect="blur"
+                            src={image}
+                            width={maxWidth} />
                         <Box >
                             <Box >
                                 {title}

@@ -9,8 +9,7 @@ import { connect } from "react-redux";
 
 const Download = (
   {
-    homes,
-    loading
+    homes
   }
 ) => {
   const theme = useTheme();

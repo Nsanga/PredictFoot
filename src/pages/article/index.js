@@ -8,7 +8,7 @@ import Download from '../../components/downloadApp';
 import { useMediaQuery, useTheme } from '@material-ui/core';
 import RecentPosts from '../../components/recentsPosts';
 import Article from '../../components/article';
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 
 
 const useStyles = makeStyles((theme) => ({

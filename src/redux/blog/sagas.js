@@ -3,14 +3,15 @@ import * as types from './types';
 import { getUnauthRequest } from '../../helpers/api';
 import {url} from '../../urlLoader';
 
-function* fetchBlogRequest() {
+function* fetchBlogRequest(action) {
   try {
-    const link = `${url}/api/v1/landing-page/blog/getAll`;
+    const { page, limit } = action.payload;
+    const link = `${url}/api/v1/landing-page/blog/getAll?page=${page}&limit=${limit}`;
     const data = yield getUnauthRequest(link);
     console.log('datas::', data)
 
-    if(data.success) {
-      yield put({ type: types.GET_BLOG_SUCCESS, payload: data.data }); 
+    if(data.totalItems) {
+      yield put({ type: types.GET_BLOG_SUCCESS, payload: {results: data.results, totalPages: data.totalPages, page: data.page} }); 
     } else {
       yield put({ type: types.GET_BLOG_FAILED, payload: "echec recuperation des données" });
     }

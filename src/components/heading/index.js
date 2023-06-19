@@ -40,8 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Headband = (
     {
-        homes,
-        loading
+        homes
     }
 ) => {
     const classes = useStyles();

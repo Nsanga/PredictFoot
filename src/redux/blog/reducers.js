@@ -3,6 +3,8 @@ import * as types from './types';
 const INITIAL_STATE = {
   blogs: [],
   articles: [],
+  totalPages: 0,
+  page: 0,
   loading: false,
   error: null
 };
@@ -24,7 +26,9 @@ function BlogReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         loading: false,
-        blogs: action.payload
+        blogs: action.payload.results,
+        totalPages: action.payload.totalPages,
+        page: action.payload.page,
       };
       case types.GET_ARTICLE_REQUEST:
       return {

@@ -83,14 +83,6 @@
     object-fit: cover
 }
 
-.ellipsis {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 @media screen and (max-width: 767px) {
     .section {
         padding: 26px;

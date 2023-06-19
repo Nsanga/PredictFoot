@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        marginRight: '10rem',
+        padding: '2rem 10rem 0rem 8px',
         
     },
     menuResponsive: {
@@ -185,7 +185,7 @@ export default function Footer() {
                     <Container className={classes.rootResponsive}>
                         <Grid container spacing={4}>
                             <Grid className={classes.columnResponsive}>
-                                <img src={logo} alt="logo" style={{ maxWidth: "250px" }} />
+                                <img src={logo} alt="logo" style={{ maxWidth: "150px" }} />
                             </Grid>
                             <Grid item xs={12} md={4} className={classes.menuResponsive}>
                                 <Typography variant="subtitle1" className={classes.headFooterResponsive}>

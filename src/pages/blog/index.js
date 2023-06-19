@@ -32,66 +32,55 @@ const Blog = (
         console.log('Dispatched fetchBlogRequest');
     }, [dispatch]);
 
-    if (loading) {
-        return (
-            <Stack direction="row" justifyContent='center' alignItems='center' height='100vh'>
-                <img src={load} alt="load animation" className="load-animation" />
-            </Stack>
-        )
-    }
-
     return (
         <div>
             <Header />
-            {isMatch ? (
-                <>
-                    <Stack className="rootResponsiveBlog" textAlign='center'>
-                        <BlogBox
-                            titre="Blog"
-                            description="Restez au courant des dernières nouvelles, des mises à jour et des potins de l'écosystème PredictFoot à travers nos articles et newsletters."
-                        />
-                    </Stack>
-
-                    <Box className="sectionResponsiveBlog">
-                        <Box>
-                            <Stack container spacing={2}>
-
-                                <PopularPost blogs={blogs} />
-                                <RecentPosts blogs={blogs} />
-
-                            </Stack>
-                        </Box>
-                    </Box>
-                    <AllArticle />
-                </>
+            {loading ? (
+                <Stack direction="row" justifyContent='center' alignItems='center' height='100vh'>
+                    <img src={load} alt="load animation" className="load-animation" />
+                </Stack>
             ) : (
                 <>
-                    <Stack className="rootBlog" textAlign='center'>
-                        <BlogBox
-                            titre="Blog"
-                            description="Restez au courant des dernières nouvelles, des mises à jour et des potins de l'écosystème PredictFoot à travers nos articles et newsletters."
-                        />
-                    </Stack>
+                    {isMatch ? (
+                        <>
 
-                    <Box className="sectionBlog">
-                        <Box sx={{ flexGrow: 1 }}>
-                            <Grid container spacing={2}>
+                            <Box className="sectionResponsiveBlog">
+                                <Box>
+                                    <Stack container spacing={2}>
 
-                                <Grid item xs={8}>
-                                    <PopularPost blogs={blogs} />
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <RecentPosts blogs={blogs} />
-                                </Grid>
+                                        <PopularPost blogs={blogs} />
+                                        <RecentPosts blogs={blogs} />
 
-                            </Grid>
-                        </Box>
-                    </Box>
-                    <AllArticle />
+                                    </Stack>
+                                </Box>
+                            </Box>
+                            <AllArticle />
+                        </>
+                    ) : (
+                        <>
+
+                            <Box className="sectionBlog">
+                                <Box sx={{ flexGrow: 1 }}>
+                                    <Grid container spacing={2}>
+
+                                        <Grid item xs={8}>
+                                            <PopularPost blogs={blogs} />
+                                        </Grid>
+                                        <Grid item xs={4}>
+                                            <RecentPosts blogs={blogs} />
+                                        </Grid>
+
+                                    </Grid>
+                                </Box>
+                            </Box>
+                            <AllArticle />
+                        </>
+                    )}
+                    <DownloadApp />
+                    <Footer />
                 </>
             )}
-            <DownloadApp />
-            <Footer />
+
         </div>
     );
 }

@@ -23,7 +23,9 @@ export default function RecentPosts({ blogs }) {
                     <Box>
                         <Box variant='h1' className="headerRecentPost">Posts récents</Box>
                         <Box>
-                            {filterArticles(blogs, "recent").map((post, index) => (
+                            {filterArticles(blogs, "recent")
+                            .slice(0, 3)
+                            .map((post, index) => (
                                 <Link to={`/article/${post._id}`} className='link-all-articles'>
                                     <RecentPost post={post} key={index} />
                                 </Link>
@@ -34,7 +36,9 @@ export default function RecentPosts({ blogs }) {
             ) : (
                 <>
                     <Box className="headerRecentPost">Posts récents</Box>
-                    {filterArticles(blogs, "recent").map((post, index) => (
+                    {filterArticles(blogs, "recent")
+                    .slice(0, 3)
+                    .map((post, index) => (
                         <Link to={`/article/${post._id}`} className='link-all-articles'>
                             <RecentPost post={post} key={index} />
                         </Link>

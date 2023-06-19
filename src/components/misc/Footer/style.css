@@ -1,0 +1,156 @@
+.root {
+    background-color: #F3F4F6;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10rem
+}
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 16px;
+}
+.followUs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.form {
+    display: flex;
+    align-items: center;
+}
+.input {
+    flex: 1;
+    margin-right: 16px;
+}
+.button {
+    background-color: blue;
+    color: #fff;
+}
+
+.button:hover {
+    background-color: blue;
+};
+
+.headFooter {
+    margin-right: 16;
+    font-size: 1.125rem;
+    [theme.breakpoints.up(xl)]: {
+        font-size: 0.875rem;
+
+    };
+    fontWeight: 600;
+    marginBottom: 1rem;
+}
+.newsletter {
+    margin-right: 16;
+    font-size: 1.125rem;
+    //margin: 1rem 0; 
+    fontWeight: 600;
+}
+.menuItems {
+    textDecoration: none;
+    color: #000000;
+    font-size: 1.125rem;
+    [theme.breakpoints.up(lg)]: {
+        font-size: 0.875rem;
+        marginBottom: 0.5rem;
+
+    };
+    fontWeight: 600;
+    letterSpacing: 0.025em;
+    transition: all 0.3s ease;
+    paddingBottom: 0.1rem;
+    borderBottomWidth: 3px;
+    borderBottomStyle: solid;
+    borderBottomColor: transparent;
+    &:hover: {
+        cursor: pointer;
+        borderBottomColor: #4299e1;
+        color: #4299e1;
+    };
+},
+
+rootResponsive: {
+    background-color: #F3F4F6,
+    display: flex,
+    justify-content: center,
+    align-items: center,
+    marginTop: 2rem
+},
+columnResponsive: {
+    display: flex,
+    flex-direction: column,
+    justify-content: center,
+    align-items: center,
+    margin-right: 10rem,
+    
+},
+menuResponsive: {
+    display: flex,
+    flex-direction: column,
+    justify-content: center,
+    align-items: flex-start,
+    //marginBottom: 0.5rem,
+},
+followUsResponsive: {
+    display: flex,
+    flex-direction: column,
+    justify-content: center,
+
+},
+formResponsive: {
+    display: flex,
+    align-items: center,
+},
+inputResponsive: {
+    //flex: 1,
+    //margin-right: theme.spacing(2),
+},
+buttonResponsive: {
+    textTransform: none,
+    background-color: blue[500],
+    color: #fff,
+    &:hover: {
+        background-color: blue[700],
+    },
+},
+headFooterResponsive: {
+    font-size: 1rem,
+    fontWeight: 600,
+    marginBottom: 1rem,
+},
+newsletterResponsive: {
+    font-size: 1rem,
+    //margin: 1rem 0, 
+    fontWeight: 600,
+},
+menuItemsResponsive: {
+    textDecoration: none,
+    color: #000000,
+    font-size: 1rem,
+    [theme.breakpoints.up(lg)]: {
+        font-size: 0.875rem,
+        marginBottom: 0.5rem,
+
+    },
+    fontWeight: 600,
+    letterSpacing: 0.025em,
+    transition: all 0.3s ease,
+    paddingBottom: 0.1rem,
+    borderBottomWidth: 3px,
+    borderBottomStyle: solid,
+    borderBottomColor: transparent,
+    &:hover: {
+        cursor: pointer,
+        color: #4299e1,
+    },
