@@ -127,7 +127,7 @@ const AllArticle = (
 
                             <Box className='header-all-articles'>
                                 <Box>Tous les articles</Box>
-                                <Link to="/blog/articles" style={{ textDecoration: 'none' }}>
+                                <Link to="/articles" style={{ textDecoration: 'none' }}>
                                     <Icon style={{ padding: '8px', color: '#243E63' }}>
                                         <IoChevronForwardCircleOutline size={32} />
                                     </Icon>
