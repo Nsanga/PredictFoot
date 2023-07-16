@@ -5,8 +5,9 @@ import { useMediaQuery, useTheme } from '@material-ui/core';
 import { Stack } from "@mui/material";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import StatChart from "../StatChart";
 
-export function Section({ title, subtitle, description, image, maxWidth }) {
+export function Section({ title, subtitle, description, image, maxWidth, successPercentage, titleStat }) {
 
     const theme = useTheme();
     console.log(theme);
@@ -29,11 +30,9 @@ export function Section({ title, subtitle, description, image, maxWidth }) {
                             {description}
                         </div>
                         <Box className="customBoxResponsiveSection">
-                            <LazyLoadImage
-                                alt={title}
-                                effect="blur"
-                                src={image}
-                                width={maxWidth} />
+                            <StatChart
+                                successPercentage={successPercentage}
+                                titleStat={titleStat} />
                         </Box>
                     </Container>
                 </>
@@ -48,11 +47,9 @@ export function Section({ title, subtitle, description, image, maxWidth }) {
                             <Box className='paragrapheSection' >
                                 {description}
                             </Box>
-                            <LazyLoadImage
-                                alt={title}
-                                effect="blur"
-                                src={image}
-                                width={maxWidth} />
+                            <StatChart
+                                successPercentage={successPercentage}
+                                titleStat={titleStat} />
                         </Box>
                     </Container>
                 </>

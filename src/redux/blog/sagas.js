@@ -25,7 +25,7 @@ function* fetchArticleRequest(action) {
   try {
     console.log('id::', action.payload)
     const id = action.payload
-    const link = `${url}/api/v1/landing-page/blog/getOne?Id=${id}`;
+    const link = `${url}/api/v1/landing-page/blog/getById?Id=${id}`;
     
     const data = yield getUnauthRequest(link);
     console.log('article', data)

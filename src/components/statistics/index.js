@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 const Statistics = (
   {
     homes,
-    loading
   }
 ) => {
   const theme = useTheme();
@@ -25,7 +24,8 @@ const Statistics = (
             title={item?.title}
             subtitle={item?.subtitle}
             description={item?.description}
-            image={Diagramme}
+            successPercentage={parseInt(item?.pourcentage)}
+            titleStat={item?.titleStat}
             maxWidth="200px"
           />
         ))

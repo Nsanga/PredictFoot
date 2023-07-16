@@ -4,9 +4,8 @@ import { useMediaQuery, useTheme } from '@material-ui/core';
 import PopularCard from '../misc/PopularPostCard';
 import './style.css';
 import { Link } from 'react-router-dom';
-import Slider from 'react-slick';
 
-export default function PopularPost({ blogs, populaire }) {
+export default function PopularPost({ blogs }) {
     const theme = useTheme();
     console.log(theme);
     const isMatch = useMediaQuery(theme.breakpoints.down("md"));
